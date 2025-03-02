@@ -43,6 +43,7 @@ const getProblems = async (user, rating) => {
 
 submit.addEventListener('click', async () => {
   const problems = await getProblems(user.value, rating.value);
+  problemList[0].innerHTML = '';
   if (!problems) {
     window.alert("Invalid username");
     return;
@@ -53,7 +54,7 @@ submit.addEventListener('click', async () => {
   }
   for (let problem of problems) {
     const problemElement = document.createElement('li');
-    problemElement.innerHTML = `<a class="text-white" href="${problemUrl}${problem.contestId}/${problem.index}" target="_blank">${problem.name}</a>`;
+    problemElement.innerHTML = `<a class="text-white text-decoration-none" href="${problemUrl}${problem.contestId}/${problem.index}" target="_blank">${problem.name}</a>`;
     problemList[0].appendChild(problemElement);
   }
 });
